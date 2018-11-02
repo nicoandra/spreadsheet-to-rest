@@ -1,24 +1,22 @@
 {
   "compilerOptions": {
+    "allowJs": true,
+    "alwaysStrict": true,
+    "checkJs": true,
+    "experimentalDecorators": true,
     "module": "commonjs",
-    "target": "es6",
     "noImplicitAny": true,
-    "strictNullChecks": true,
-    "moduleResolution": "node",
+    "noImplicitThis": true,
+    "outDir": "./dist/",
+    "pretty": true,
+    "removeComments": false,
     "sourceMap": true,
-    "outDir": "./js-dist",
-    "baseUrl": ".",
-    "paths": {
-      "*": [
-        "node_modules/*"
-      ]
-    }
+    "strict": true,
+    "strictNullChecks": true,
+    "target": "es2017"
   },
-  "include": [
-    "./ts-src/**/*"
-  ],
   "exclude": [
     "node_modules",
-    "./tsconfig.json"
+    "dist"
   ]
 }
