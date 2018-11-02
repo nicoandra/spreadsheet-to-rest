@@ -9,7 +9,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/yaml": "^1.0.0",
     "nodemon": "^1.18.5",
-    "typescript": "^3.1.6"
+    "typescript": "^3.1.6",
+    "yaml": "^1.0.0"
   }
 }

@@ -14,4 +14,4 @@ EXPOSE 3000
 RUN npm install && tsc
 
 # Start the server
-ENTRYPOINT ["nodemon"]
+ENTRYPOINT ["./node_modules/.bin/nodemon"]

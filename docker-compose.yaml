@@ -9,4 +9,3 @@ services:
     - ./:/code
     ports:
     - 4010:3000
-    command: nodemon
