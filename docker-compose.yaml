@@ -1,0 +1,12 @@
+version: "3.4"
+
+services:
+  spreadsheet-to-rest:
+    image: spreadsheet-to-rest
+    build:
+      context: .
+    volumes:
+    - ./:/code
+    ports:
+    - 4010:3000
+    command: nodemon
