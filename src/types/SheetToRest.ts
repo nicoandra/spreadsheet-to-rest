@@ -1,21 +1,20 @@
 import { InvalidArgumentError } from 'restify-errors';
+import { validate, Length } from "class-validator";
 
 enum SheetToRestStatusEnum {
-    Received,
-
-    AuthRequired,
-    AuthSucceeded,
-    AuthFailed,
-
-    HeadersRetrieved,
-    HeadersNotFound,
-
+    Received, NotFound = -1,
+    AuthRequired, AuthSucceeded, AuthFailed = -2,
+    HeadersRetrieved, HeadersNotFound = -3,
     Completed
 }
 
 export class SheetToRest {
+  @Length(1,50)
   public sheetId: string;
+
+  @Length(1,255)
   public url : string;
+
   private status : SheetToRestStatusEnum = SheetToRestStatusEnum.Received;
 
   public constructor(parameters: object) {
@@ -23,9 +22,10 @@ export class SheetToRest {
     this.url = parameters.url;
   }
 
-  public validate () : void {
-    throw new InvalidArgumentError('Invalid arguments in your call bro')
-
+  public async validate () { // @TODO Type this value
+    const errors = await validate(this);
+    if (errors.length)
+      throw new InvalidArgumentError('Invalid arguments in your call bro')
   }
 
   public dump() : void {

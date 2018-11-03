@@ -1,5 +1,6 @@
 //ECHO controller - respond with the parameters passed in
 import * as restify from "restify";
+import { InvalidArgumentError } from 'restify-errors';
 import { SheetToRest } from '../types/SheetToRest'
 
 export default class SheetToRestController {
@@ -10,11 +11,11 @@ export default class SheetToRestController {
     const job : SheetToRest = new SheetToRest(req.params);
 
     try {
-      job.validate()
-    } catch (exception) {
+      await job.validate()
+    } catch ( exception: InvalidArgumentError) {
       return next(exception);
     }
-    
+
     job.dump();
 
     res.send(job);
