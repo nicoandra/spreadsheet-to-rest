@@ -1,6 +1,0 @@
-{
-  "watch": ["ts-src"],
-  "ext": "ts",
-  "ignore": ["js-src/**/*.spec.ts"],
-  "exec": "./node_modules/.bin/tsc --build tsconfig.json; node js-dist/index.js"
-}
