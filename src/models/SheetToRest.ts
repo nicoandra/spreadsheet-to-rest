@@ -1,5 +1,6 @@
 import { InvalidArgumentError } from 'restify-errors';
 import { validate, Length } from "class-validator";
+import { BaseModel } from './base';
 
 enum SheetToRestStatusEnum {
     Received, NotFound = -1,
@@ -8,7 +9,7 @@ enum SheetToRestStatusEnum {
     Completed
 }
 
-export class SheetToRest {
+export class SheetToRest extends BaseModel {
   @Length(1,50)
   public sheetId: string;
 
@@ -20,12 +21,6 @@ export class SheetToRest {
   public constructor(parameters: object) {
     this.sheetId = parameters.sheetId;
     this.url = parameters.url;
-  }
-
-  public async validate () { // @TODO Type this value
-    const errors = await validate(this);
-    if (errors.length)
-      throw new InvalidArgumentError('Invalid arguments in your call bro')
   }
 
   public dump() : void {

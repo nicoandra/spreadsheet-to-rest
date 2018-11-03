@@ -1,7 +1,7 @@
 //ECHO controller - respond with the parameters passed in
 import * as restify from "restify";
 import { InvalidArgumentError } from 'restify-errors';
-import { SheetToRest } from '../types/SheetToRest'
+import { SheetToRest } from '../models/SheetToRest'
 
 export default class SheetToRestController {
 
