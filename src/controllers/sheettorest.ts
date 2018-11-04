@@ -21,11 +21,12 @@ export default class SheetToRestController {
 
     const data = [];
     let record;
-    while(record = await job.fetchCurrentRowAsObject()) {
+    while(record = await job.postCurrentRowAsObject()) {
       data.push(record);
+      job.nextRow();
     }
 
-    const response = { request: req.params, response : { status: "OK", data }};
+    const response = { request: req.params, response : { status: "OK", data, job }};
 
     res.send(response);
     next();
