@@ -11,14 +11,23 @@ export default class SheetToRestController {
     const job : SheetToRest = new SheetToRest(req.params);
 
     try {
-      await job.validate()
-    } catch ( exception: InvalidArgumentError) {
+      await job.validate();
+    } catch ( exception ) {
       return next(exception);
     }
 
-    job.dump();
+    await job.tryToDoInitialRead();
+    await job.populateHeadersFromSource();
 
-    res.send(job);
+    const data = [];
+    let record;
+    while(record = await job.fetchCurrentRowAsObject()) {
+      data.push(record);
+    }
+
+    const response = { request: req.params, response : { status: "OK", data }};
+
+    res.send(response);
     next();
 
   };
